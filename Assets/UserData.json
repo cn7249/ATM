@@ -1,0 +1,10 @@
+{
+    "user": [
+        {
+            "id": "Test",
+            "password": "1234",
+            "name": "Test",
+            "balance": 50000
+        }
+    ]
+}
