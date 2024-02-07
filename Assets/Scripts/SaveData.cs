@@ -54,5 +54,6 @@ public class UserData
     public string password;
     public string name;
     public int balance;
+    public int cash;
     public bool isLogined;
 }

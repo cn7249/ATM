@@ -5,6 +5,7 @@
             "password": "81DC9BDB52D04DC20036DBD8313ED055",
             "name": "Test",
             "balance": 50000,
+            "cash": 100000,
             "isLogined": false
         }
     ]

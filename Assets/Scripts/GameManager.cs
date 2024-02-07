@@ -61,7 +61,12 @@ public class GameManager : MonoBehaviour
     {
         foreach (var item in _saveData.saveUserData.user)
         {
-            item.isLogined = false;
+            if (item.isLogined)
+            {
+                item.isLogined = false;
+                item.balance = balance;
+                item.cash = cash;
+            }
         }
     }
 
@@ -72,6 +77,7 @@ public class GameManager : MonoBehaviour
             if (item.isLogined)
             {
                 balance = item.balance;
+                cash = item.cash;
                 nameTxt.text = "Welcome, " + item.name;
             }
         }

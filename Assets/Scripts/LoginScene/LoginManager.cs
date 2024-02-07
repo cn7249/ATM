@@ -172,6 +172,7 @@ public class LoginManager : MonoBehaviour
         data.name = registerName.text;
         data.password = _hasher.HashData(registerPassword.text);
         data.balance = 50000;
+        data.cash = 100000;
         data.isLogined = false;
 
         _saveData.saveUserData.user.Add(data);
