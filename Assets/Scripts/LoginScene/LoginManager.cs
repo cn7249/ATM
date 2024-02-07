@@ -31,10 +31,12 @@ public class LoginManager : MonoBehaviour
     [SerializeField] private Button popupCloseBtn;
 
     private SaveData _saveData;
+    private Hasher _hasher;
 
     private void Awake()
     {
         _saveData = saveDataObject.GetComponent<SaveData>();
+        _hasher = gameObject.GetComponent<Hasher>();
     }
 
     void Start()
@@ -119,7 +121,7 @@ public class LoginManager : MonoBehaviour
         {
             if (item.id == userid)
             {
-                if (item.password == input)
+                if (item.password == _hasher.HashData(input))
                 {
                     Debug.Log("비밀번호가 일치합니다!");
                     return true;
@@ -168,7 +170,7 @@ public class LoginManager : MonoBehaviour
         var data = new UserData();
         data.id = registerID.text;
         data.name = registerName.text;
-        data.password = registerPassword.text;
+        data.password = _hasher.HashData(registerPassword.text);
         data.balance = 50000;
         data.isLogined = false;
 
