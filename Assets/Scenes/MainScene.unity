@@ -1047,6 +1047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   balanceTxt: {fileID: 303018819}
+  nameTxt: {fileID: 915613870}
   cashTxt: {fileID: 2000542671}
   menuPanel: {fileID: 1880928305}
   depositPanel: {fileID: 1377351820}
@@ -2080,7 +2081,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Welcome, \uC5FC\uC608\uCC2C"
+  m_text: Welcome,
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4b8017278e9af78489d51aadc1c06ddf, type: 2}
   m_sharedMaterial: {fileID: 117155432989790554, guid: 4b8017278e9af78489d51aadc1c06ddf, type: 2}

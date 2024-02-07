@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SaveData : MonoBehaviour
 {
+
     public SaveUserData saveUserData;
 
     private void Awake()
@@ -38,11 +39,6 @@ public class SaveData : MonoBehaviour
         Debug.Log("데이터 불러왔음");
     }
 
-    private void OnApplicationQuit()
-    {
-        SaveUserData();
-    }
-
 }
 
 [System.Serializable]
@@ -58,4 +54,5 @@ public class UserData
     public string password;
     public string name;
     public int balance;
+    public bool isLogined;
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     [Header ("Text UI")]
     [SerializeField] private TextMeshProUGUI balanceTxt;
+    [SerializeField] private TextMeshProUGUI nameTxt;
     [SerializeField] private TextMeshProUGUI cashTxt;
 
     [Header ("Menu UI")]
@@ -26,11 +28,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int balance;
     [SerializeField] private int cash;
 
+    private SaveData _saveData;
+
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
+            _saveData = GameObject.Find("SaveData").GetComponent<SaveData>();
         }
         else
         {
@@ -40,14 +45,36 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        LoadData();
         UpdateMoney();
         ShowMenu();
         popupBtn.onClick.AddListener(() => ClosePopup());
     }
 
-    void Update()
+    void OnApplicationQuit()
     {
-        
+        SetStateLogout();
+        _saveData.SaveUserData();
+    }
+
+    private void SetStateLogout()
+    {
+        foreach (var item in _saveData.saveUserData.user)
+        {
+            item.isLogined = false;
+        }
+    }
+
+    private void LoadData()
+    {
+        foreach (var item in _saveData.saveUserData.user)
+        {
+            if (item.isLogined)
+            {
+                balance = item.balance;
+                nameTxt.text = "Welcome, " + item.name;
+            }
+        }
     }
 
     private void UpdateMoney()

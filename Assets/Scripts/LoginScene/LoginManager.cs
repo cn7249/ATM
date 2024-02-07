@@ -73,8 +73,9 @@ public class LoginManager : MonoBehaviour
         {
             if (CheckUserPassword(idInput.text, passwordInput.text))
             {
-                SceneManager.LoadScene("MainScene");
+                SetStateLogin(idInput.text);
                 Debug.Log("로그인 성공!");
+                SceneManager.LoadScene("MainScene");
             }
             else
             {
@@ -84,6 +85,17 @@ public class LoginManager : MonoBehaviour
         else
         {
             OpenPopup("해당 회원 정보가 존재하지 않습니다.");
+        }
+    }
+
+    private void SetStateLogin(string userid)
+    {
+        foreach (var item in _saveData.saveUserData.user)
+        {
+            if (item.id == userid)
+            {
+                item.isLogined = true;
+            }
         }
     }
 
@@ -158,6 +170,7 @@ public class LoginManager : MonoBehaviour
         data.name = registerName.text;
         data.password = registerPassword.text;
         data.balance = 50000;
+        data.isLogined = false;
 
         _saveData.saveUserData.user.Add(data);
         OpenPopup("성공적으로 회원가입을 완료했습니다.");
