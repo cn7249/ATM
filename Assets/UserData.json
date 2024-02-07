@@ -4,6 +4,14 @@
             "id": "Test",
             "password": "81DC9BDB52D04DC20036DBD8313ED055",
             "name": "Test",
+            "balance": 150000,
+            "cash": 0,
+            "isLogined": false
+        },
+        {
+            "id": "Test2",
+            "password": "5416D7CD6EF195A0F7622A9C56B55E84",
+            "name": "Test2",
             "balance": 50000,
             "cash": 100000,
             "isLogined": false

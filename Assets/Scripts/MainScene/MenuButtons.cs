@@ -7,11 +7,13 @@ public class MenuButtons : MonoBehaviour
 {
     [SerializeField] private Button depositBtn;
     [SerializeField] private Button withdrawBtn;
+    [SerializeField] private Button transferBtn;
 
     void Start()
     {
         depositBtn.onClick.AddListener(() => Deposit());
         withdrawBtn.onClick.AddListener(() => Withdraw());
+        transferBtn.onClick.AddListener(() => Transfer());
     }
 
     void Deposit()
@@ -22,5 +24,10 @@ public class MenuButtons : MonoBehaviour
     void Withdraw()
     {
         GameManager.instance.ShowWithdraw();
+    }
+
+    void Transfer()
+    {
+        GameManager.instance.ShowTransfer();
     }
 }

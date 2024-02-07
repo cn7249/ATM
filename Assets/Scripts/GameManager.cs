@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private GameObject depositPanel;
     [SerializeField] private GameObject withdrawPanel;
+    [SerializeField] private GameObject transferPanel;
     [SerializeField] private GameObject popupPanel;
 
     [Header ("Popup UI")]
@@ -94,6 +95,7 @@ public class GameManager : MonoBehaviour
         menuPanel.SetActive(true);
         depositPanel.SetActive(false);
         withdrawPanel.SetActive(false);
+        transferPanel.SetActive(false);
         popupPanel.SetActive(false);
     }
 
@@ -102,6 +104,7 @@ public class GameManager : MonoBehaviour
         menuPanel.SetActive(false);
         depositPanel.SetActive(true);
         withdrawPanel.SetActive(false);
+        transferPanel.SetActive(false);
         popupPanel.SetActive(false);
     }
 
@@ -110,6 +113,16 @@ public class GameManager : MonoBehaviour
         menuPanel.SetActive(false);
         depositPanel.SetActive(false);
         withdrawPanel.SetActive(true);
+        transferPanel.SetActive(false);
+        popupPanel.SetActive(false);
+    }
+
+    public void ShowTransfer()
+    {
+        menuPanel.SetActive(false);
+        depositPanel.SetActive(false);
+        withdrawPanel.SetActive(false);
+        transferPanel.SetActive(true);
         popupPanel.SetActive(false);
     }
 
@@ -150,5 +163,29 @@ public class GameManager : MonoBehaviour
         {
             ShowPopup("잔액이 부족합니다.");
         }
+    }
+
+    public void Transfer(string destination, int amount)
+    {
+        foreach (var item in _saveData.saveUserData.user)
+        {
+            if (item.name == destination)
+            {
+                if (balance >= amount)
+                {
+                    item.balance += amount;
+                    balance -= amount;
+                    ShowPopup($"{destination}님께 {amount}원 안전하게 송금 완료!");
+                    break;
+                }
+                else
+                {
+                    ShowPopup("잔액이 부족합니다.");
+                    break;
+                }
+            }
+            ShowPopup("송금 대상을 찾을 수 없습니다!");
+        }
+        UpdateMoney();
     }
 }
